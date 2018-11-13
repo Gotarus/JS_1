@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+
+var Ipz32 = [
+    {firstname : "Vladyslav" , lastname : "Berkyshchuk" , rating : 99 },
+    {firstname : "Vasyl"     , lastname : "Lukyanchuk"  , rating : 100},
+    {firstname : "Igor"      , lastname : "Kohut"       , rating : 90 },
+    {firstname : "Vitaliy"   , lastname : "Kreminskiy"  , rating : 95 },
+    {firstname : "Vitaliy"   , lastname : "Dmytruk"     , rating : 75 },
+    {firstname : "Vitaliy"   , lastname : "Suhodolskiy" , rating : 80 },
+    {firstname : "Maksym"    , lastname : "Kowtsun"     , rating : 85 },
+    {firstname : "Vadym"     , lastname : "Samoylov"    , rating : 86 },
+    {firstname : "Ruslan"    , lastname : "Savitskiy"   , rating : 70 },
+    {firstname : "Serhiy"    , lastname : "Revitskiy"   , rating : 71 },
+    {firstname : "Serhiy"    , lastname : "Sushko"      , rating : 96 },
+    {firstname : "Denis"     , lastname : "Shapoval"    , rating : 97 },
+    {firstname : "Bohdan"    , lastname : "Saichyshyn"  , rating : 81 },
+    {firstname : "Andriy"    , lastname : "Tsinuk"      , rating : 82 },
+            ];
+// Лінь створювати більше :)
+// 2.3
+var lowest = Number.POSITIVE_INFINITY;
+var highest = Number.NEGATIVE_INFINITY;
+var name = "";
+var surname ="";
+for (var i = 0 ; i < Ipz32.length ; i++ ) {
+    if (Ipz32[i].rating > highest){
+        highest = Ipz32[i].rating;
+        name = Ipz32[i].firstname;
+        surname = Ipz32[i].lastname;
+    }
+}
+document.write("Max value : "+name +" "+ surname + " = " + highest + "<br/>");
+for ( i = 0 ; i < Ipz32.length ; i++ ) {
+
+    if (Ipz32[i].rating < lowest) {
+        lowest = Ipz32[i].rating;
+        name = Ipz32[i].firstname;
+        surname = Ipz32[i].lastname;
+    }
+}
+
+document.write("Min value : "+name +" "+ surname + " = " + lowest + "<br/>");
+var total  = 0 ;
+for ( i = 0 ; i< Ipz32.length ; i++){
+    total+=Ipz32[i].rating;
+}
+var avg = total/Ipz32.length;
+var average = parseInt(avg);
+for (i = 0 ; i < Ipz32.length ; i++){
+    if (Ipz32[i].rating === average){
+       name = Ipz32[i].firstname;
+       surname = Ipz32[i].lastname;
+
+    }
+
+}
+document.write("Mid value : "+name +" "+ surname + " = " + average + "<br/>");
+//*
+//*
+//*
+//*
+//*
+// 2.1 2.2
+document.write("Sort : <br/>");
+var Name = [];
+var Surname = [];
+var rate = [];
+
+for ( i = 0 ; i < Ipz32.length; i++){
+    Name[i] = Ipz32[i].firstname ;
+   Surname[i] = Ipz32[i].lastname;
+   rate[i] = Ipz32[i].rating;
+
+}
+
+
+Name.sort();
+Surname.sort();
+rate.sort(function compareNumbers(a,b){
+    return a - b  ;
+});
+document.write("Rating : <br/>");
+var num = 1;
+for ( i = 0; i < rate.length; i++){
+    for (j = 0 ; j < Ipz32.length; j++) {
+        if (rate[i] === Ipz32[j].rating ){
+            document.write( num++ +  "."+Ipz32[j].firstname + " " + Ipz32[j].lastname+" : "+rate[i] + "<br/>");
+        }
+    }
+}
+
+document.write("Surnames : <br/>");
+for ( i = 0; i < Surname.length; i++){
+    for (var j = 0 ; j < Ipz32.length; j++) {
+        if (Surname[i] === Ipz32[j].lastname ){
+        document.write(i + 1 + "." + Surname[i] +" "+ Ipz32[j].firstname+ "<br/>")
+        }
+    }
+}
+document.write("Names : <br/>");
+
+for ( i = 0; i < Ipz32.length; i++){
+    for (j = 0 ; j < Ipz32.length; j++){
+    if ( Name[i] === Ipz32[j].firstname){
+        document.write(i+1 +"." + Name[i] + " " + Ipz32[j].lastname  + "<br/>");
+        delete Ipz32[j].firstname;
+        break;
+    }
+    }
+}
+
+// task 3
+document.write("TASK 3 : <br/>");
+ var result = 0 ;
+    for ( i = 0 ; i < rate.length ; i++ ){
+        for (j = 0 ; j < Ipz32.length ; j++)
+        if (rate[i] === Ipz32[j].rating){
+        result = rate[i]/highest * 100 - 100;
+        parseInt(result);
+        document.write(i+1 + "." +Ipz32[j].lastname +": " + -result + "%"+"<br/>");
+        }
+
+    }
+
+document.write("Code GENERATION <br/> ")
+
+// Не дороблено , очікуйте апдейту =)
+function generate(len)
+{
+    var ints =[0,1,2,3,4,5,6,7,8,9];
+    var chars=['a','b','c','d','e','f','g','h','j','k','l','m','n','o','p','r','s','t','u','v','w','x','y','z'];
+    var out='';
+    for(var i=0;i<len;i++){
+        var ch=Math.random(1,2);
+        if(ch<0.5){
+            var ch2=Math.ceil(Math.random(1,ints.length)*10);
+            out+=ints[ch2];
+        }else{
+            var ch2=Math.ceil(Math.random(1,chars.length)*10);
+            out+=chars[ch2];
+        }
+    }
+    return out;
+}
+
+document.write(generate(12))
+
+
+
+</script>
+
+</body>
+</html>
